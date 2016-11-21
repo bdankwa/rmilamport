@@ -1,7 +1,7 @@
 #!/bin/bash
-if [[ $# < 1 ]]; then
+if [[ $# < 8 ]]; then
 	echo "Please provide port number for application."
-	echo "Usage: ./startpeer port hostname"
+	echo "Usage: ./startpeer port localhostname peer1 peer2 peer3 iterations eventProp byzantineProb"
 	exit
 fi
 SERVER_CLASS="$PWD/ServerEntry.class"
@@ -18,5 +18,5 @@ fi
 SQLPATH= $PWD
 echo "Starting Peer Server on port $1 on machine $2."
 #This must be run from /bin
-java -cp "."  -Djava.security.policy=policy ServerEntry $1 $2 
+java -cp "."  -Djava.security.policy=policy ServerEntry $1 $2 $3 $4 $5 $6 $7 $8
 
