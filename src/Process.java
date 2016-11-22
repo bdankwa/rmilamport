@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Process {
 	
-	private static final int NUM_OF_PROC = 4;
+	private static final int NUM_OF_PROC = 2;
 	
 	private LogicalClock clock;
 	private int proc_id;
@@ -21,7 +21,7 @@ public class Process {
 	private Formatter fmtFile;
 	private String nodes[];
 	
-	public Process(CommsImpl comms, String[] peers, int iterations, int eventProb, int byzntProb) {
+	public Process(CommsImpl comms, String[] peers, String localName, int iterations, int eventProb, int byzntProb) {
 
 		clock = new LogicalClock();
 		communications = comms;
@@ -29,9 +29,9 @@ public class Process {
 		this.eventProb = eventProb; //args[1];
 		this.byztProb = byzntProb; //args[2];
 		this.nodes = peers;
-		this.me = peers[0];
+		this.me = localName;
 		
-		logFile = "node_" + me;
+		logFile = "node_" + me + ".dat";
 		try {
 			fmtFile = new Formatter(new FileOutputStream(logFile));
 		} catch (FileNotFoundException e) {
@@ -54,6 +54,9 @@ public class Process {
 		}*/
 
 		//cout << "Process: " << proc_id << endl;
+		for(i=1; i< nodes.length; i++){
+			while(!communications.findRemotePeer(nodes[i]));			
+		}
 
 		for(i=0; i<iterations; i++){
 
@@ -79,7 +82,7 @@ public class Process {
 			}
 
 			
-			fmtFile.format("%i\t%i\t%f\t%f\t%i\t%i\n", 0, i, (eventProb/10.0), (1.0/byztProb), 
+			fmtFile.format("%d\t%d\t%f\t%f\t%d\t%d\n", 0, i, (eventProb/10.0), (1.0/byztProb), 
 					clock.getTime(), (clock.getTime() - prev_time));
 
 			prev_time = clock.getTime();
@@ -88,6 +91,8 @@ public class Process {
 
 		//fclose(fd);
 		fmtFile.close();
+		System.out.println("SIMULATION COMPLETE! runs = " + iterations);
+		System.out.println("Data is saved in " + logFile);
 	}
 
 	Event createRandomEvent() {

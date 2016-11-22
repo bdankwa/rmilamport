@@ -10,6 +10,7 @@ public class Message implements java.io.Serializable {
 	
 	public Message(int id){
 		this.id = id;
+		data = new Packet();
 		data.lclock = 0;
 		data.validityCode = 0;
 	}

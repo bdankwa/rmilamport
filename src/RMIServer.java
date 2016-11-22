@@ -15,16 +15,18 @@ public class RMIServer implements Runnable{
 	
 	public void run(){
 		//System.setSecurityManager(new SecurityManager());
+		System.out.println("STARTING SERVER ON " + name);
 		
 		try {
 			RPOInterface server = new RMIComms(comms);
 			Naming.rebind(name, server);
-			comms.bounded = true;
-			System.out.println("server bounded name :" + name);
+			System.out.println("SEVER RUNNING, bound to :" + name);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		//System.out.println("Exiting...");
 		
 		
 	}

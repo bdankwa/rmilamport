@@ -28,10 +28,12 @@ public class ReceiveEvent implements Event {
 		}
 		else{
 			processClock.tick();
-
-			if( inMsg.isValid() && (processClock.getTime() <= inMsg.getContent().lclock)){
-				processClock.setTime((inMsg.getContent().lclock) + 1);
-				//cout << "Process:" << process <<"Advanced my clock"<<endl;
+			
+			if(inMsg != null){
+				if( inMsg.isValid() && (processClock.getTime() <= inMsg.getContent().lclock)){
+					processClock.setTime((inMsg.getContent().lclock) + 1);
+					System.out.println("I advanced my clock");
+				}				
 			}
 		}
 	}
