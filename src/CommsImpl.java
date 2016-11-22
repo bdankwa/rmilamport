@@ -34,14 +34,14 @@ public class CommsImpl implements Comms {
 			//System.out.println("trying to lookup name :" + peer);
 			RPOInterface sv = (RPOInterface) Naming.lookup(peer);
 		}catch (RemoteException e){
-			System.out.println("Waiting for remote peer " + peer + " to come up!");
+			//System.out.println("Waiting for remote peer " + peer + " to come up!");
 			return false;
 
 		}catch (Exception e) {
 			//e.printStackTrace();
 			return false;
 		}
-		System.out.println("Found " + peer + "!");
+		System.out.println("SYNCHRONIZED WITH " + peer + "!");
 		return true;
 	}
 

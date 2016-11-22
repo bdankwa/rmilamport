@@ -93,6 +93,14 @@ public class Process {
 		fmtFile.close();
 		System.out.println("SIMULATION COMPLETE! runs = " + iterations);
 		System.out.println("Data is saved in " + logFile);
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Error! Unable to sleep");
+		}
+		System.exit(0);
 	}
 
 	Event createRandomEvent() {

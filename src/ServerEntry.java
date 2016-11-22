@@ -15,19 +15,19 @@ public class ServerEntry {
 		String port = args[0];
 		String myhostname = args[1];
 		String peer1 = args[2];
-		/*String peer2 = args[3];
-		String peer3 = args[4];*/
-		String iterations = args[3];
-		String eventProb = args[4];
-		String byzntProb = args[5];
+		String peer2 = args[3];
+		String peer3 = args[4];
+		String iterations = args[5];
+		String eventProb = args[6];
+		String byzntProb = args[7];
 		
-		//String hostnames[] = {myhostname, peer1, peer2, peer3};
-		String hostnames[] = {myhostname, peer1};
+		String hostnames[] = {myhostname, peer1, peer2, peer3};
+		//String hostnames[] = {myhostname, peer1};
 		
 		int port_num = Integer.parseInt(port);
 		String AppName = "/ServerEntry";
 		String me = "//"+ myhostname + ":"+ port + AppName;
-		String peerNames[] = {null, null};
+		String peerNames[] = {null, null, null, null};
 		
 		for(int i =0; i<hostnames.length; i++){
 			peerNames[i] = "//"+ hostnames[i] + ":"+ port + AppName;
