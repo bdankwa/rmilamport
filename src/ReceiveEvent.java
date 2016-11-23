@@ -19,7 +19,7 @@ public class ReceiveEvent implements Event {
 		long randomNumber;
 
 		Message inMsg = communications.receive();
-		randomNumber = generateRandomInt(1, byzatineProb);
+		randomNumber = Utils.generateRandomInt(1, byzatineProb);
 
 		if(randomNumber == byzatineProb/2){
 			/***********************************************
@@ -39,9 +39,6 @@ public class ReceiveEvent implements Event {
 	public long createdAt(){
 		return timeCreated;
 	}
-	
-	private long generateRandomInt(int lower, int upper){
-		return new Random().nextInt((upper - lower) + 1) + lower;
-	}
+
 
 }
