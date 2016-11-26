@@ -4,12 +4,14 @@ public class SendEvent implements Event {
 	private long timeCreated;
 	private CommsImpl communications;
 	String destination;
+	String source;
 	LogicalClock processClock;
 	
-	public SendEvent(CommsImpl comms, String dest, LogicalClock clock) {
+	public SendEvent(CommsImpl comms, String source, String destination, LogicalClock clock) {
 		processClock = clock;
 		communications = comms;
-		destination = dest;
+		this.source = source;
+		this.destination = destination;
 		timeCreated = processClock.getTime();
 	}
 
@@ -18,7 +20,7 @@ public class SendEvent implements Event {
 		 * Create a message, write current clock value and
 		 * send to destination.
 		 ************************************************/
-		Message outMsg = new Message(1);
+		Message outMsg = new Message(1, source, destination);
 		processClock.tick();
 		outMsg.setCreatedTime(processClock.getTime());
 		outMsg.setValid(true);

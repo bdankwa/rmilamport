@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Process {
 	
-	private static final int NUM_OF_PROC = 2;
+	private static final int NUM_OF_PROC = 4;
 	
 	private LogicalClock clock;
 	private int proc_id;
@@ -100,7 +100,7 @@ public class Process {
 			//e.printStackTrace();
 			System.out.println("Error! Unable to sleep");
 		}
-		System.exit(0);
+		//System.exit(0);
 	}
 
 	Event createRandomEvent() {
@@ -117,7 +117,7 @@ public class Process {
 				event = new InternalEvent(clock);
 			}
 			if(selection == 10){
-				event = new SendEvent(communications, randomDestination, clock);
+				event = new SendEvent(communications, me, randomDestination, clock);
 			}
 			break;
 		case 2 : // 0.2 probability
@@ -125,7 +125,7 @@ public class Process {
 				event = new InternalEvent(clock);
 			}
 			if(selection >= 9){
-				event = new SendEvent(communications, randomDestination, clock);
+				event = new SendEvent(communications, me, randomDestination, clock);
 			}
 			break;
 		case 3: // 0.3 probability
@@ -133,7 +133,7 @@ public class Process {
 				event =  new InternalEvent(clock);
 			}
 			if(selection >= 8){
-				event =  new SendEvent(communications, randomDestination, clock);
+				event =  new SendEvent(communications, me, randomDestination, clock);
 			}
 			break;
 		case 4: // 0.4 probability
@@ -141,7 +141,7 @@ public class Process {
 				event =  new InternalEvent(clock);
 			}
 			if(selection >= 7){
-				event =  new SendEvent(communications, randomDestination, clock);
+				event =  new SendEvent(communications, me,randomDestination, clock);
 			}
 			break;
 		case 5: // 0.5 probability
@@ -149,7 +149,7 @@ public class Process {
 				event =  new InternalEvent(clock);
 			}
 			if(selection >= 6){
-				event =  new SendEvent(communications, randomDestination, clock);
+				event =  new SendEvent(communications, me, randomDestination, clock);
 			}
 			break;
 		default:

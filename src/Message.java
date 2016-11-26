@@ -7,9 +7,13 @@ public class Message implements java.io.Serializable {
 	
 	private int id;
 	private Packet data;
+	private String source;
+	private String destination;
 	
-	public Message(int id){
+	public Message(int id, String source, String destination){
 		this.id = id;
+		this.source = source;
+		this.destination = destination;
 		data = new Packet();
 		data.lclock = 0;
 		data.validityCode = 0;
@@ -49,6 +53,14 @@ public class Message implements java.io.Serializable {
 	
 	public int getid(){
 		return id;
+	}
+	
+	public String getSource(){
+		return source;
+	}
+	
+	public String getDestination(){
+		return destination;
 	}
 
 }

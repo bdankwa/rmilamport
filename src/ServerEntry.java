@@ -9,6 +9,11 @@ public class ServerEntry {
 	private static Registry registry;	
 	static volatile CommsImpl communications;
 	
+	/**************************************************
+	 * Main entry
+	 * @param args
+	 *************************************************/
+	
 	public static void main(String args[]){
 		System.setSecurityManager(new SecurityManager());
 		
@@ -35,20 +40,16 @@ public class ServerEntry {
 		
 		System.out.println("Starting rmiregistry on port " + port_num +"..." );
 		try {
+			//Start RMI registry
 			registry = LocateRegistry.createRegistry(port_num);
+			
 			communications = new CommsImpl();
 			RMIServer server = new RMIServer(me, communications);
 			Thread t = new Thread(server);
+			//Start server thread
 			t.start();
 			
-			//Do client stuff
-			/*Message txmsg = new Message(1234);
-			communications.send(txmsg, name);
-			System.out.println(" transmitted message id :" + txmsg.getid());
-			
-			Message rxmsg = communications.receive();
-			
-			System.out.println(" received message id :" + rxmsg.getid()); */
+			//Run process object - simulation
 			Process  proc = new Process(communications, peerNames, hostnames[0], Integer.parseInt(iterations),
 					Integer.parseInt(eventProb), Integer.parseInt(byzntProb));
 			

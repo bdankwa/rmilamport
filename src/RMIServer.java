@@ -1,6 +1,13 @@
 
 
 import java.rmi.Naming;
+/****************************************************
+ * Server thread
+ * 
+ * This thread listens for remote calls
+ * @author bdankwa
+ *
+ */
 
 public class RMIServer implements Runnable{	
 
@@ -18,16 +25,13 @@ public class RMIServer implements Runnable{
 		System.out.println("STARTING SERVER ON " + name);
 		
 		try {
-			RPOInterface server = new RMIComms(comms);
+			PeerInterface server = new PeerRemote(comms);
 			Naming.rebind(name, server);
 			System.out.println("SEVER RUNNING, bound to :" + name);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
-		//System.out.println("Exiting...");
-		
+		}		
 		
 	}
 

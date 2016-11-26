@@ -3,12 +3,12 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RMIComms extends UnicastRemoteObject implements RPOInterface {
+public class PeerRemote extends UnicastRemoteObject implements PeerInterface {
 	
 	private static final long serialVersionUID = 78837L;	
 	private CommsImpl comms;
 	
-	public RMIComms(CommsImpl comms) throws RemoteException{
+	public PeerRemote(CommsImpl comms) throws RemoteException{
 		super();
 		this.comms = comms;
 	}
